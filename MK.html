@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Royal Mystery for Pranjal</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #1a1a2e, #16213e);
+      color: #fff;
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #f5c518;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      background-color: #f5c518;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e1b60f;
+    }
+
+    #message, #secondMsg, #finalMsg, #timerContainer {
+      display: none;
+    }
+
+    #timer {
+      font-size: 2rem;
+      margin-top: 20px;
+      color: #f5c518;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎓 Congratulations on Completing Your BBA, PRANJAL! 🎓</h1>
+  <button class="btn" onclick="showMystery()">Click Next Button to Unveil Mystery</button>
+
+  <div id="message">
+    <p>🕵️‍♀️ Meet me in the main building.</p>
+    <button class="btn" onclick="startCountdown()">Click Again to Unveil the Final Mystery</button>
+  </div>
+
+  <div id="timerContainer">
+    <p>⏳ Countdown to Destiny:</p>
+    <div id="timer">01:00</div>
+  </div>
+
+  <div id="secondMsg">
+    <p>🚪 Time's up! Come to the 2nd floor... if you dare. 😈</p>
+    <button class="btn" onclick="showFinalMystery()">Reveal Final Mystery</button>
+  </div>
+
+  <div id="finalMsg">
+    <p>👑 You are now officially unemployed, PRANJAL 👑</p>
+  </div>
+
+  <script>
+    function showMystery() {
+      document.querySelector('button').style.display = 'none';
+      document.getElementById('message').style.display = 'block';
+    }
+
+    function startCountdown() {
+      document.getElementById('message').style.display = 'none';
+      document.getElementById('timerContainer').style.display = 'block';
+
+      let time = 60;
+      const timerDisplay = document.getElementById('timer');
+
+      const interval = setInterval(() => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        time--;
+
+        if (time < 0) {
+          clearInterval(interval);
+          document.getElementById('timerContainer').style.display = 'none';
+          document.getElementById('secondMsg').style.display = 'block';
+        }
+      }, 1000);
+    }
+
+    function showFinalMystery() {
+      document.getElementById('secondMsg').style.display = 'none';
+      document.getElementById('finalMsg').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
